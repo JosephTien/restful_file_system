@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  web:
+    image: restful_file_system
+    build: .
+    command: npm start
+    env_file:
+      - .env
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  web-tests:
+    image: restful_file_system
+    command: npm test
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
